@@ -1,0 +1,86 @@
+export const HERITAGE_DRESSES = [
+  {
+    id: 'saree',
+    name: 'The Saree',
+    location: 'Pan-India',
+    state: 'All States',
+    region: 'Whole India',
+    period: 'Ancient',
+    category: 'Traditional Attire',
+    description: 'An elegant drape of unstitched fabric ranging from 4.5 to over 9 meters, worn in dozens of regional styles.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5CG3j924Q6BHsVQFpGsLGb5wGt1bt8OfyQgl70Z9x2A&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Sari',
+    fullDescription: 'A sari (sometimes also shari or saree) is a women\'s garment from the Indian subcontinent that consists of an unstitched drape varying from 4.5 to 9 metres in length and 600 to 1,200 millimetres in breadth. It is typically wrapped around the waist, with one end draped over the shoulder, baring the midriff. There are various styles of sari draping, the most common being the Nivi style.'
+  },
+  {
+    id: 'dhoti-kurta',
+    name: 'Dhoti & Kurta',
+    location: 'Pan-India',
+    state: 'All States',
+    region: 'Whole India',
+    period: 'Ancient',
+    category: 'Traditional Attire',
+    description: 'The traditional lower garment for men in India, often paired with a long tunic called a kurta.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThx9uI1ZjZs_z9HRyT28agMVVRJB8gEyzrslnApdWUfA&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Dhoti',
+    fullDescription: 'The dhoti, also known as pancha, mardani or veshti, is a type of sarong that outwardly resembles trousers. It is a lower garment forming part of the national or ethnic costume for men in the Indian subcontinent. The dhoti is fashioned out of a rectangular piece of unstitched cloth, usually around 4.5 metres long, wrapped around the waist and the legs and knotted at the waist.'
+  },
+  {
+    id: 'salwar-kameez',
+    name: 'Salwar Kameez',
+    location: 'North India',
+    state: 'Punjab, Haryana, Delhi',
+    region: 'North India',
+    period: 'Medieval',
+    category: 'Traditional Attire',
+    description: 'A comfortable and versatile two-piece outfit comprising loose trousers (salwar) and a tunic top (kameez).',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvMEBXwVayk0W2PeiUWQXX-eQ6CpbpI3ALUYFom-0zDA&s=10',
+    featured: false,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Salwar_kameez',
+    fullDescription: 'Shalwar kameez is a traditional combination dress worn by women, and in some regions by men, in South Asia, and Central Asia. Shalwars are trousers which are atypically wide at the waist but which narrow to a cuffed bottom. Kameez is a long shirt or tunic. The side seams, left open below the waist-line, give the wearer greater freedom of movement.'
+  },
+  {
+    id: 'lehenga-choli',
+    name: 'Lehenga Choli',
+    location: 'North & West India',
+    state: 'Rajasthan, Gujarat',
+    region: 'North/West India',
+    period: 'Medieval',
+    category: 'Traditional Attire',
+    description: 'A vibrant three-piece ensemble consisting of a long skirt, a fitted blouse, and a draped dupatta, heavily embroidered.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH5hofzxae7K5J15f0rkBMKx84oq7JiLT9LKNo-P_TOA&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Ghagra_choli',
+    fullDescription: 'Ghagra choli or lehenga choli is a traditional clothing of women from the Indian subcontinent, notable in the Indian states of Rajasthan, Gujarat, Madhya Pradesh, Uttar Pradesh, Bihar, Haryana, Punjab, Himachal Pradesh, Uttarakhand, and Jammu and Kashmir. It is a combination of the lehenga (a long skirt), the choli (a blouse), and the dupatta (a draped scarf).'
+  },
+  {
+    id: 'sherwani',
+    name: 'Sherwani',
+    location: 'North India',
+    state: 'Multiple',
+    region: 'North India',
+    period: '19th Century CE',
+    category: 'Formal Attire',
+    description: 'A long coat-like garment worn by men for formal occasions, symbolizing royalty and elegance.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwwOCBRA4kYaqNuLEExFWkxNET-HPIJ75OlTsRmjxgig&s=10',
+    featured: false,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Sherwani',
+    fullDescription: 'A sherwani is a long coat-like garment worn in the Indian subcontinent, very similar to a Western frock coat or a Polish żupan. Originally associated with Muslim aristocracy during the period of British rule, it is worn over a kurta with the combination of either a churidar, a dhoti, a pajama, or a shalwar/sirwal as the lower-body garment. It is often chosen as a wedding outfit.'
+  },
+  {
+    id: 'mekhela-sador',
+    name: 'Mekhela Sador',
+    location: 'Assam',
+    state: 'Assam',
+    region: 'Northeast India',
+    period: 'Ancient',
+    category: 'Traditional Attire',
+    description: 'The traditional Assamese dress worn by women, consisting of two main pieces of cloth draped around the body.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1na5w43c00sj3EAk0fy9ZVCeHXyf539GALVEEIfKrAA&s=10', // placeholder
+    featured: false,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Mekhela_sador',
+    fullDescription: 'The Mekhela Sador is the traditional Assamese dress worn by women. It consists of two main pieces of cloth that are draped around the body. The bottom portion, draped from the waist downwards, is called the mekhela. The top portion is a long length of cloth that has one end tucked into the upper portion of the mekhela and the rest draped over and around the rest of the body.'
+  }
+];

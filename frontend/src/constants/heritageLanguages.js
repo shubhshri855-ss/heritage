@@ -1,0 +1,86 @@
+export const HERITAGE_LANGUAGES = [
+  {
+    id: 'sanskrit',
+    name: 'Sanskrit',
+    location: 'Pan-India',
+    state: 'Historical',
+    region: 'Whole India',
+    period: '1500 BCE',
+    category: 'Classical Language',
+    description: 'The sacred language of Hinduism and the philosophical language of Buddhism and Jainism, known for its rigorous grammar.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz79wej9nWlmnhCaPjiYx1XmaGKprFASqeXjUdfc_dd2V8bwXJWx3wuN-c&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Sanskrit',
+    fullDescription: 'Sanskrit is a classical language of South Asia belonging to the Indo-Aryan branch of the Indo-European languages. It arose in South Asia after its predecessor languages had diffused there from the northwest in the late Bronze Age. Sanskrit is the sacred language of Hinduism, the language of classical Hindu philosophy, and of historical texts of Buddhism and Jainism.'
+  },
+  {
+    id: 'tamil',
+    name: 'Tamil',
+    location: 'Tamil Nadu',
+    state: 'Tamil Nadu',
+    region: 'South India',
+    period: '300 BCE',
+    category: 'Classical Language',
+    description: 'One of the longest-surviving classical languages in the world, with a rich literature spanning over two millennia.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROZBxMK073jnpQhWfPaDrA8ROgXeJAgceNe1kpfdUP1w&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Tamil_language',
+    fullDescription: 'Tamil is a Dravidian language natively spoken by the Tamil people of South Asia. Tamil is an official language of the Indian state of Tamil Nadu, the sovereign nations of Sri Lanka and Singapore, and the Indian Union territory of Puducherry. It is one of the 22 scheduled languages of India and was the first to be classified as a classical language of India.'
+  },
+  {
+    id: 'hindi',
+    name: 'Hindi',
+    location: 'North & Central India',
+    state: 'Multiple',
+    region: 'North/Central India',
+    period: '7th Century CE',
+    category: 'Indo-Aryan Language',
+    description: 'The most widely spoken language in India, written in the Devanagari script and serving as a major lingua franca.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqXKvszVki4E6XntQeDZxM4IixbqfMabfaMIOSNw1Kfg&s=10',
+    featured: false,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Hindi',
+    fullDescription: 'Hindi, or more precisely Modern Standard Hindi, is an Indo-Aryan language spoken chiefly in the Hindi Belt region encompassing parts of northern, central, eastern, and western India. Hindi has been described as a standardised and Sanskritised register of the Hindustani language, which itself is based primarily on the Khariboli dialect of Delhi and neighbouring areas of North India.'
+  },
+  {
+    id: 'bengali',
+    name: 'Bengali',
+    location: 'Bengal Region',
+    state: 'West Bengal',
+    region: 'East India',
+    period: '1000 CE',
+    category: 'Indo-Aryan Language',
+    description: 'An Indo-Aryan language known for its profound literary tradition, pioneered by figures like Rabindranath Tagore.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqOR5VQDR1F8UJ9bajXyLpWjZUGWZm_6GLAtk3VhciDA&s=10',
+    featured: false,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Bengali_language',
+    fullDescription: 'Bengali, also known by its endonym Bangla, is an Indo-Aryan language native to the Bengal region of South Asia. It is the official and most widely spoken language of Bangladesh and second most widely spoken of the 22 scheduled languages of India. Bengali has developed over more than 1,300 years and has a rich literary tradition.'
+  },
+  {
+    id: 'telugu',
+    name: 'Telugu',
+    location: 'Andhra Pradesh, Telangana',
+    state: 'Andhra Pradesh & Telangana',
+    region: 'South India',
+    period: '400 BCE',
+    category: 'Classical Language',
+    description: 'A Dravidian language with a rich musical and poetic heritage, officially designated as a classical language by the Indian government.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJFMKJc6ibqRpQMBiHn6hLbWCE_Ov8Xwo8_6xbKVsWCQ&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Telugu_language',
+    fullDescription: 'Telugu is a Dravidian language native to the Indian states of Andhra Pradesh and Telangana, where it is also the official language. Spoken by around 82 million people, Telugu is the fourth most spoken language in India. It has an unbroken, prolific, and diverse literary tradition of more than a thousand years.'
+  },
+  {
+    id: 'marathi',
+    name: 'Marathi',
+    location: 'Maharashtra',
+    state: 'Maharashtra',
+    region: 'West India',
+    period: '8th Century CE',
+    category: 'Indo-Aryan Language',
+    description: 'The official language of Maharashtra, known for its extensive Bhakti literature composed by saint-poets.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXFiC31vNZWkEkVyyqdiQTmLwfd8JrTPfuFZzpy8HeQA&s=10', // placeholder
+    featured: false,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Marathi_language',
+    fullDescription: 'Marathi is an Indo-Aryan language predominantly spoken by Marathi people in the Indian state of Maharashtra. It is the official language of Maharashtra, and a co-official language in the Goa state and the territory of Daman and Diu, Dadra and Nagar Haveli. It has some of the oldest literature of all modern Indo-Aryan languages, dating from around 900 CE.'
+  }
+];

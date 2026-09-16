@@ -1,0 +1,73 @@
+export const HERITAGE_CULTURE = [
+  {
+    id: 'jaipur',
+    name: 'The Jantar Mantar / Pink City Jaipur',
+    location: 'Jaipur',
+    state: 'Rajasthan',
+    region: 'North India',
+    period: '18th Century CE',
+    category: 'Cultural Heritage',
+    description: 'The fortified city of Jaipur, known as the Pink City, showcases exemplary urban planning and architecture that blends Rajput, Mughal, and early Western cultures.',
+    image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=600&auto=format&fit=crop',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Jaipur',
+    fullDescription: 'Jaipur is the capital and the largest city of the Indian state of Rajasthan. As of 2011, the city had a population of 3.1 million, making it the tenth most populous city in the country. Jaipur is also known as the Pink City, due to the dominant colour scheme of its buildings. It is also known as the Paris of India, and is located 268 km (167 miles) from the national capital New Delhi.'
+  },
+  {
+    id: 'varanasi',
+    name: 'Ghats of Varanasi',
+    location: 'Varanasi',
+    state: 'Uttar Pradesh',
+    region: 'North India',
+    period: 'Ancient (various periods)',
+    category: 'Cultural Heritage',
+    description: 'The spectacular riverfront of the Ganges in Varanasi, characterized by numerous stone ghats, temples, and a continuous living cultural and spiritual tradition.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg/250px-Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Varanasi',
+    fullDescription: 'Varanasi, also known as Benares or Kashi, is a city on the Ganges river in northern India that has a central place in the traditions of pilgrimage, death, and mourning in the Hindu world. The city has a syncretic tradition of Muslim artisanship that underpins its religious tourism. Located in the middle-Ganges valley in the southeastern part of the state of Uttar Pradesh, Varanasi lies on the left bank of the river.'
+  },
+  {
+    id: 'kumbh-mela',
+    name: 'The Kumbh Mela',
+    location: 'Prayagraj, Haridwar, Ujjain, Nashik',
+    state: 'Multiple',
+    region: 'North/Central India',
+    period: 'Ancient (Ongoing)',
+    category: 'Intangible Cultural Heritage',
+    description: 'The largest peaceful gathering of pilgrims on earth, representing a deeply rooted spiritual and cultural tradition in India.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTUQzIj4tAG_fyQX_0CeuZNWUhQn__wdbzJONwvknf8A&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Kumbh_Mela',
+    fullDescription: 'The Kumbh Mela is a major Hindu festival and pilgrimage. It is celebrated in a cycle of approximately 12 years at four river-bank pilgrimage sites: Prayagraj (Ganges-Yamuna Sarasvati rivers confluence), Haridwar (Ganges), Nashik (Godavari), and Ujjain (Shipra). The festival is marked by a ritual dip in the waters, but it is also a celebration of community commerce with numerous fairs, education, religious discourses by saints, mass feedings of monks or the poor, and entertainment spectacle. It is the largest public gathering and collective act of faith, described as the "world\'s largest congregation of religious pilgrims".'
+  },
+  {
+    id: 'kathakali',
+    name: 'Kathakali Dance',
+    location: 'Kochi',
+    state: 'Kerala',
+    region: 'South India',
+    period: '17th Century CE',
+    category: 'Performing Arts',
+    description: 'A major form of classical Indian dance characterized by its elaborate, colorful makeup, costumes, and intricate facial expressions.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx89uWRb4yKDXDXqAD6jS81-t4XrOPT5JC05h5e8NCRw&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Kathakali',
+    fullDescription: 'Kathakali is a major form of classical Indian dance. It is a "story play" genre of art, but one distinguished by the elaborately colorful make-up, costumes and face masks that the traditionally male actor-dancers wear. Kathakali is a Hindu performance art in the Malayalam-speaking southwestern region of India (Kerala). Kathakali\'s roots are unclear. The fully developed style of Kathakali originated around the 17th century, but its roots are in the temple and folk arts that trace back to 1st millennium CE or earlier.'
+  },
+  {
+    id: 'yoga-rishikesh',
+    name: 'Yoga Capital of the World',
+    location: 'Rishikesh',
+    state: 'Uttarakhand',
+    region: 'North India',
+    period: 'Ancient (Ongoing)',
+    category: 'Living Traditions',
+    description: 'Rishikesh is renowned globally as a center for studying yoga and meditation, nestled in the foothills of the Himalayas along the Ganges.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTytDKfq8B1YO3CtYhSIES61S4sgIU_gj6fXa53BfPebw&s=10',
+    featured: true,
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Rishikesh',
+    fullDescription: 'Rishikesh, also spelt as Hrishikesh, is a city governed by Rishikesh Municipal Corporation, and a tehsil in Dehradun district of the Indian state Uttarakhand. Located in the foothills of the Himalayas in northern India, it is known as the "Gateway to the Garhwal Himalayas" and "Yoga Capital of the World". It lies approximately 25 km (16 mi) north of the city Haridwar and 43 km (27 mi) southeast of the state capital Dehradun. Rishikesh has been a magnet for spiritual seekers. Today it styles itself as the "Yoga Capital of the World", with masses of ashrams and all kinds of yoga and meditation classes.'
+  },
+  
+];

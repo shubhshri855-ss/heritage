@@ -1,0 +1,18 @@
+.cursor {
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  background-color: yellow;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+@media (max-width: 1260px) {
+ .cursor {
+    display: none;
+  }
+}

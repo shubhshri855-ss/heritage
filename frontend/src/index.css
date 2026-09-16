@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Outfit:wght@100;200;300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #c9a25b; /* Muted gold */
+  --color-secondary: #e07a5f; /* Terracotta */
+  --color-accent: #a97142; /* Subtle bronze */
+  --color-sandstone: #d4a373;
+  --color-background: #0a0a0a; /* Darker charcoal for WebGL contrast */
+  --color-surface: #121212;
+  --color-surface-light: #1a1a1a;
+  --color-text-primary: #fdfbf7; /* Warm ivory */
+  --color-text-secondary: #c8c0ab; /* Muted ivory */
+}
+
+body {
+  font-family: 'Outfit', 'Inter', system-ui, Avenir, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom Cursor Rules */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Google Translate Widget Styles */
+body {
+  top: 0 !important; /* Prevents the page from shifting down */
+}
+.goog-te-banner-frame.skiptranslate {
+  display: none !important; /* Hides the top banner */
+}
+
+/* Style the main container (simple layout) */
+.goog-te-gadget-simple {
+  background-color: transparent !important;
+  border: 1px solid rgba(201, 162, 91, 0.3) !important;
+  border-radius: 4px !important;
+  padding: 6px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.goog-te-gadget-simple:hover {
+  border-color: #c9a25b !important;
+  background-color: rgba(201, 162, 91, 0.1) !important;
+}
+
+/* Hide the Google G icon and dropdown arrow images */
+.goog-te-gadget-icon {
+  display: none !important;
+}
+.goog-te-gadget-simple img {
+  display: none !important;
+}
+
+/* Style the text inside */
+.goog-te-gadget-simple span {
+  color: #c8c0ab !important; /* text-secondary */
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Fallback if it renders as a native select */
+#google_translate_element select {
+  background-color: #1a1a1a !important;
+  color: #fdfbf7 !important;
+  border: 1px solid rgba(201, 162, 91, 0.3) !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 14px !important;
+  outline: none !important;
+}
+
+.goog-logo-link {
+  display: none !important;
+}
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 0px !important;
+}
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+}
+

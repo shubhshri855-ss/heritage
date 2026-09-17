@@ -49,6 +49,38 @@ const realImages = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMCjSLVolpXnvyjLUVuDQt73dIelyciMfSRHxt7pDe1w&s=10'
 ];
 
+const ImageSlideshow = ({ images, alt, baseClassName }) => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!images || images.length <= 1) return;
+    // Randomize the interval slightly so cards don't all transition at the exact same time
+    const intervalTime = 3000 + Math.random() * 2000;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, intervalTime);
+    return () => clearInterval(interval);
+  }, [images]);
+
+  if (!images || images.length === 0) return null;
+
+  return (
+    <>
+      {images.map((img, i) => (
+        <img
+          key={i}
+          src={img}
+          alt={`${alt} - view ${i + 1}`}
+          loading="lazy"
+          className={`${baseClassName} ${
+            i === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          } transition-opacity duration-1000`}
+        />
+      ))}
+    </>
+  );
+};
+
 const StateHeritagePage = () => {
   const { stateId } = useParams();
 
@@ -60,9 +92,22 @@ const StateHeritagePage = () => {
     if (!stateData) return [];
     const stateNameLower = stateData.name.toLowerCase();
     
-    const actualItems = ALL_HERITAGE.filter(item => 
+    let actualItems = ALL_HERITAGE.filter(item => 
       item.state && item.state.toLowerCase() === stateNameLower
     );
+
+    // Ensure all actual items have at least 3 images for the slideshow
+    actualItems = actualItems.map((item, idx) => {
+      let imgs = item.images || [];
+      if (item.image && !imgs.includes(item.image)) imgs.unshift(item.image);
+      if (imgs.length === 0) imgs.push('https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=800');
+      
+      // Pad with generic realImages if they don't have enough to cycle
+      while (imgs.length < 3) {
+        imgs.push(realImages[(idx * 11 + imgs.length * 7) % realImages.length]);
+      }
+      return { ...item, images: imgs };
+    });
 
     // If there are less than 25 items, pad with beautiful placeholders to create a full collage
     const targetCount = 25;
@@ -70,12 +115,17 @@ const StateHeritagePage = () => {
       const needed = targetCount - actualItems.length;
       const paddedItems = [];
       for (let i = 0; i < needed; i++) {
-        const randomImage = realImages[(i * 3 + actualItems.length) % realImages.length];
+        // Pick 3-4 random images for the slideshow
+        const randomImages = [
+          realImages[(i * 3 + actualItems.length) % realImages.length],
+          realImages[(i * 5 + actualItems.length + 1) % realImages.length],
+          realImages[(i * 7 + actualItems.length + 2) % realImages.length]
+        ];
         paddedItems.push({
           name: `Discover ${stateData.name} #${i + 1}`,
           type: ['Site', 'Culture', 'Festival'][i % 3],
           description: `Explore the magnificent and diverse heritage of ${stateData.name}. Uncover ancient traditions and breathtaking sites.`,
-          image: randomImage,
+          images: randomImages,
         });
       }
       return [...actualItems, ...paddedItems];
@@ -153,11 +203,10 @@ const StateHeritagePage = () => {
                   transition={{ delay: 0.05 * (idx % 15) }}
                   className={`group relative overflow-hidden rounded-xl bg-surface-light border border-primary/10 shadow-lg cursor-pointer break-inside-avoid w-full ${heightClass}`}
                 >
-                  <img 
-                    src={item.image || item.images?.[0] || 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=800'} 
-                    alt={item.name}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:sepia-[0.3]"
+                  <ImageSlideshow 
+                    images={item.images} 
+                    alt={item.name} 
+                    baseClassName="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:sepia-[0.3]"
                   />
                   
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />

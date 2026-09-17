@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { geoMercator } from 'd3-geo';
@@ -16,6 +17,7 @@ const InteractiveIndiaMap = () => {
   const [tooltipContent, setTooltipContent] = useState("");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const hoverTimeoutRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -138,7 +140,13 @@ const InteractiveIndiaMap = () => {
                  animate={{ opacity: 1, y: 0 }}
                  transition={{ delay: 0.4 }}
               >
-                <button className="px-10 py-4 bg-primary/10 hover:bg-primary text-primary hover:text-background border-2 border-primary font-cinzel font-bold text-lg rounded-xl transition-all duration-300">
+                <button 
+                  onClick={() => {
+                    navigate(`/state/${fullscreenState.id}`);
+                    closeMapModal();
+                  }}
+                  className="px-10 py-4 bg-primary/10 hover:bg-primary text-primary hover:text-background border-2 border-primary font-cinzel font-bold text-lg rounded-xl transition-all duration-300"
+                >
                   Explore Culture Heritage
                 </button>
               </motion.div>

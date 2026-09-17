@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Explore from './pages/Explore';
 import AIGuide from './pages/AIGuide';
 import PlaceholderPage from './pages/PlaceholderPage';
+import StateHeritagePage from './pages/StateHeritagePage';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
@@ -32,6 +33,9 @@ function App() {
           
           {/* Individual Monument Explore View */}
           <Route path="explore/:id" element={<Explore />} />
+          
+          {/* State Heritage View */}
+          <Route path="state/:stateId" element={<StateHeritagePage />} />
           
           {/* Placeholder Routes */}
           <Route path="explore" element={<PlaceholderPage title="Explore Heritage" />} />

@@ -61,10 +61,10 @@ const Navbar = () => {
       }`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between relative w-full">
+        <div className="flex items-center justify-between relative w-full gap-4">
           
           {/* Left: Logo */}
-          <div className="flex-1 flex justify-start">
+          <div className="flex-none flex justify-start">
             <Link to="/" className="flex items-center gap-2 xl:gap-3 relative z-[60] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded p-1 -ml-1">
               <img src={logoImg} alt="Bharat Sangam Logo" className="w-10 h-10 md:w-12 md:h-12 xl:w-14 xl:h-14 rounded-full border-2 border-primary/50 shadow-[0_0_15px_rgba(201,162,91,0.5)] group-hover:scale-110 transition-transform duration-300 object-cover" />
               <div className="flex flex-col justify-center">
@@ -79,13 +79,13 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-center flex-[2]">
-            <ul className="flex items-center gap-4 xl:gap-8 text-xs xl:text-sm font-medium tracking-widest uppercase text-text-secondary">
+          <div className="hidden lg:flex flex-1 items-center justify-center overflow-hidden">
+            <ul className="flex items-center gap-3 xl:gap-8 text-xs xl:text-sm font-medium tracking-widest uppercase text-text-secondary">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.to}
-                    className="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-2 transition-colors duration-200 whitespace-nowrap"
+                    className="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1 xl:px-2 py-2 transition-colors duration-200 whitespace-nowrap"
                   >
                     {link.name}
                   </Link>
@@ -95,35 +95,35 @@ const Navbar = () => {
           </div>
 
           {/* Right: Mobile Toggle & Translate */}
-          <div className="flex items-center justify-end gap-6 relative z-[60] flex-1">
+          <div className="flex-none flex items-center justify-end gap-4 xl:gap-6 relative z-[60]">
             <div id="google_translate_element" className="hidden lg:block"></div>
             
             {user ? (
               <>
                 <Link
                   to={getDashboardLink()}
-                  className="hidden lg:inline-flex items-center justify-center px-4 py-2 border border-primary/30 text-primary hover:bg-primary hover:text-background font-medium tracking-widest uppercase rounded transition-all duration-300"
+                  className="hidden lg:inline-flex items-center justify-center px-3 xl:px-4 py-2 border border-primary/30 text-primary hover:bg-primary hover:text-background font-medium tracking-widest uppercase rounded transition-all duration-300 text-sm"
                 >
                   Dashboard
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="hidden lg:inline-flex items-center justify-center px-4 py-2 border border-red-500/30 text-red-500 hover:bg-red-500 hover:text-white font-medium tracking-widest uppercase rounded transition-all duration-300"
+                  className="hidden lg:inline-flex items-center justify-center px-3 xl:px-4 py-2 border border-red-500/30 text-red-500 hover:bg-red-500 hover:text-white font-medium tracking-widest uppercase rounded transition-all duration-300 text-sm"
                 >
                   Logout
                 </button>
               </>
             ) : (
-              <div className="flex items-center gap-8">
+              <div className="flex items-center gap-4 xl:gap-8">
                 <Link
                   to="/login"
-                  className="hidden lg:inline-flex items-center justify-center px-5 py-2 border border-primary/30 text-primary hover:bg-primary hover:text-background font-medium tracking-widest uppercase rounded transition-all duration-300"
+                  className="hidden lg:inline-flex items-center justify-center px-4 py-2 border border-primary/30 text-primary hover:bg-primary hover:text-background font-medium tracking-widest uppercase rounded transition-all duration-300 text-sm"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="hidden lg:inline-flex items-center justify-center px-5 py-2 bg-primary/30 border border-primary text-primary hover:bg-primary hover:text-background font-medium tracking-widest uppercase rounded transition-all duration-300"
+                  className="hidden lg:inline-flex items-center justify-center px-4 py-2 bg-primary/30 border border-primary text-primary hover:bg-primary hover:text-background font-medium tracking-widest uppercase rounded transition-all duration-300 text-sm"
                 >
                   Sign Up
                 </Link>

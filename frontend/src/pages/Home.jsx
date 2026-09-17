@@ -540,7 +540,7 @@ const Home = () => {
               <motion.p 
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
                 className="text-primary font-outfit font-light tracking-[0.4em] uppercase text-xs md:text-sm"
               >
                 THE DIGITAL ARCHIVE OF INDIA
@@ -552,7 +552,7 @@ const Home = () => {
                 <motion.h2 
                   initial={{ y: 100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 1.2, delay: 0.4, ease: [0.76, 0, 0.24, 1] }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
                   className="text-6xl md:text-8xl xl:text-[8rem] font-cinzel font-light text-text-primary leading-[0.9] tracking-tighter"
                 >
                   Timeless
@@ -562,7 +562,7 @@ const Home = () => {
                 <motion.h2 
                   initial={{ y: 100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 1.2, delay: 0.5, ease: [0.76, 0, 0.24, 1] }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
                   className="text-6xl md:text-8xl xl:text-[8rem] font-cinzel font-light text-text-primary leading-[0.9] tracking-tighter text-primary/90"
                 >
                   Heritage.
@@ -573,7 +573,7 @@ const Home = () => {
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="text-base md:text-lg text-text-secondary font-outfit font-light max-w-md leading-relaxed tracking-wide mix-blend-normal"
             >
               Step inside India's history through immersive 3D experiences, ancient scripts, and interactive stories beautifully crafted for the digital age.
@@ -582,7 +582,7 @@ const Home = () => {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
               className="pt-6 flex flex-col sm:flex-row items-start gap-4"
             >
               <Button 
@@ -601,7 +601,7 @@ const Home = () => {
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             className="hidden lg:flex items-center justify-center relative z-20"
           >
             <InteractiveIndiaMap />
@@ -614,7 +614,7 @@ const Home = () => {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
+        transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-secondary z-10 pointer-events-none"
       >
         <span className="text-[10px] tracking-widest uppercase">Scroll</span>

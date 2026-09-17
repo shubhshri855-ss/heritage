@@ -83,7 +83,9 @@ const StateHeritagePage = () => {
   const { stateId } = useParams();
 
   const stateData = useMemo(() => {
-    return STATE_DATA.find(s => s.id.toLowerCase() === stateId?.toLowerCase());
+    if (!stateId) return null;
+    const decodedId = decodeURIComponent(stateId).toLowerCase();
+    return STATE_DATA.find(s => s.id.toLowerCase() === decodedId || s.name.toLowerCase() === decodedId);
   }, [stateId]);
 
   const stateHeritageItems = useMemo(() => {
@@ -99,7 +101,8 @@ const StateHeritagePage = () => {
 
     // Ensure all actual items have at least 3 images for the slideshow
     actualItems = actualItems.map((item, idx) => {
-      let imgs = item.images || [];
+      // Clone the array to avoid mutating the original constants
+      let imgs = item.images ? [...item.images] : [];
       if (item.image && !imgs.includes(item.image)) imgs.unshift(item.image);
       if (imgs.length === 0) imgs.push('https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=800');
       

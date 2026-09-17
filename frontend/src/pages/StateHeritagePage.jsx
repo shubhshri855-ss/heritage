@@ -72,9 +72,9 @@ const ImageSlideshow = ({ images, alt, baseClassName }) => {
           src={img}
           alt={`${alt} - view ${i + 1}`}
           loading="lazy"
-          className={`${baseClassName} ${
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:sepia-[0.3] ${
             i === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-          } transition-opacity duration-1000`}
+          }`}
         />
       ))}
     </>
@@ -206,7 +206,6 @@ const StateHeritagePage = () => {
                   <ImageSlideshow 
                     images={item.images} 
                     alt={item.name} 
-                    baseClassName="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:sepia-[0.3]"
                   />
                   
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />

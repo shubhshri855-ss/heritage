@@ -19,7 +19,7 @@ const SectionHeading = ({ subtitle, title, titleHighlight, className = '' }) => 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: subtitle ? 0.1 : 0 }}
-        className="text-4xl md:text-5xl lg:text-6xl font-cinzel font-semibold text-text-primary leading-normal pb-2"
+        className="text-4xl md:text-5xl lg:text-6xl font-cinzel font-semibold text-text-primary leading-[1.4] pb-4"
       >
         {title} {titleHighlight && <span className="text-primary italic font-light">{titleHighlight}</span>}
       </motion.h3>

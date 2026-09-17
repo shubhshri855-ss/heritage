@@ -95,8 +95,8 @@ const Navbar = () => {
           </div>
 
           {/* Right: Mobile Toggle & Translate */}
-          <div className="flex-none flex items-center justify-end gap-4 xl:gap-6 relative z-[60]">
-            <div id="google_translate_element" className="hidden lg:block"></div>
+          <div className="flex items-center justify-end gap-4 xl:gap-6 relative z-[60]">
+            <div id="google_translate_element" className="hidden lg:block min-w-[140px]"></div>
             
             {user ? (
               <>

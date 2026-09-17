@@ -65,22 +65,27 @@ const Navbar = () => {
           
           {/* Left: Logo */}
           <div className="flex-1 flex justify-start">
-            <Link to="/" className="flex items-center gap-3 relative z-[60] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded p-1 -ml-1">
-              <img src={logoImg} alt="Bharat Sangam Logo" className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-primary/50 shadow-[0_0_15px_rgba(201,162,91,0.5)] group-hover:scale-110 transition-transform duration-300 object-cover" />
-              <span className="text-3xl lg:text-4xl font-cinzel font-bold tracking-widest text-text-primary uppercase">
-                BHARAT <span className="text-primary">SANGAM</span>
-              </span>
+            <Link to="/" className="flex items-center gap-2 xl:gap-3 relative z-[60] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded p-1 -ml-1">
+              <img src={logoImg} alt="Bharat Sangam Logo" className="w-10 h-10 md:w-12 md:h-12 xl:w-14 xl:h-14 rounded-full border-2 border-primary/50 shadow-[0_0_15px_rgba(201,162,91,0.5)] group-hover:scale-110 transition-transform duration-300 object-cover" />
+              <div className="flex flex-col justify-center">
+                <span className="text-lg xl:text-2xl font-cinzel font-bold tracking-widest text-text-primary uppercase leading-none mb-1">
+                  BHARAT
+                </span>
+                <span className="text-lg xl:text-2xl font-cinzel font-bold tracking-widest text-primary uppercase leading-none">
+                  SANGAM
+                </span>
+              </div>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center flex-[2]">
-            <ul className="flex items-center gap-8 xl:gap-12 text-base lg:text-lg font-medium tracking-widest uppercase text-text-secondary">
+            <ul className="flex items-center gap-4 xl:gap-8 text-xs xl:text-sm font-medium tracking-widest uppercase text-text-secondary">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.to}
-                    className="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-3 py-2 transition-colors duration-200 whitespace-nowrap"
+                    className="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-2 transition-colors duration-200 whitespace-nowrap"
                   >
                     {link.name}
                   </Link>

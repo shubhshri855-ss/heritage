@@ -144,23 +144,29 @@ const StateHeritagePage = () => {
     if (!stateHeritageItems.length) return;
     
     let ctx = gsap.context(() => {
-      const items = gsap.utils.toArray('.bento-item');
+      const items = gsap.utils.toArray('.stacked-card');
       
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          pin: true,
+          start: 'center center', // Pin when container is in center of viewport
+          end: `+=${items.length * 80}%`, // Gives decent scrolling time per card
+          scrub: 1, // Smooth scrub
+        }
+      });
+      
+      // Animate each item EXCEPT the very last one
       items.forEach((item, i) => {
-        // Create parallax scrub effect. We give different speeds based on index
-        // Columns effectively move at slightly different rates on scroll
-        const speed = 0.2 + ((i % 4) * 0.1); 
-        
-        gsap.to(item, {
-          yPercent: -15 * speed,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top bottom', // Start animation when container top hits bottom of viewport
-            end: 'bottom top',   // End when container bottom hits top of viewport
-            scrub: 1,            // Smooth scrubbing
-          }
-        });
+        if (i < items.length - 1) {
+          tl.to(item, {
+            yPercent: -150, // Move up out of the view
+            opacity: 0,
+            scale: 0.85,
+            rotation: (i % 2 === 0 ? -5 : 5), // Alternate slight rotation
+            ease: 'power1.inOut'
+          });
+        }
       });
     }, containerRef);
     
@@ -181,7 +187,7 @@ const StateHeritagePage = () => {
   }
 
   return (
-    <PageTransition className="min-h-screen bg-background relative overflow-hidden pt-32 pb-20 px-4 sm:px-6 lg:px-12 xl:px-24">
+    <PageTransition className="min-h-screen bg-background relative overflow-visible overflow-x-hidden pt-32 pb-20 px-4 sm:px-6 lg:px-12 xl:px-24">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-primary)_0%,_transparent_50%)] opacity-[0.03] pointer-events-none" />
       
@@ -219,30 +225,16 @@ const StateHeritagePage = () => {
           </motion.div>
         </div>
 
-        {/* Heritage Grid / Collage */}
+        {/* Heritage Stacked Cards */}
         {stateHeritageItems.length > 0 ? (
-          <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-flow-dense gap-4 md:gap-6">
+          <div ref={containerRef} className="relative w-full h-[70vh] flex items-center justify-center mt-12 perspective-[1500px]">
             {stateHeritageItems.map((item, idx) => {
-              // Bento layout logic based on index
-              let bentoClass = 'col-span-1 row-span-1 h-[300px]'; // default
-              const modulo = idx % 10;
-              
-              if (modulo === 0) {
-                bentoClass = 'md:col-span-2 md:row-span-2 h-[300px] md:h-[624px]'; // Large Square (624 = 300*2 + 24 gap)
-              } else if (modulo === 3 || modulo === 7) {
-                bentoClass = 'md:col-span-2 md:row-span-1 h-[300px]'; // Wide
-              } else if (modulo === 4) {
-                bentoClass = 'md:col-span-1 md:row-span-2 h-[300px] md:h-[624px]'; // Tall
-              }
               
               return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 0.6, delay: 0.05 * (idx % 8) }}
-                  className={`bento-item group relative overflow-hidden rounded-xl bg-surface-light border border-primary/10 shadow-lg cursor-pointer w-full ${bentoClass}`}
+                  style={{ zIndex: stateHeritageItems.length - idx }}
+                  className={`stacked-card absolute w-[90%] md:w-[800px] h-[450px] md:h-[600px] bg-surface-light border border-primary/20 shadow-2xl rounded-2xl overflow-hidden cursor-pointer group`}
                 >
                   <ImageSlideshow 
                     images={item.images} 
@@ -251,14 +243,14 @@ const StateHeritagePage = () => {
                   
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
                   
-                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <span className="text-xs md:text-xs font-bold tracking-widest text-primary uppercase mb-2 block drop-shadow-md">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <span className="text-sm md:text-md font-bold tracking-widest text-primary uppercase mb-2 block drop-shadow-md">
                       {item.type}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-text-primary mb-2 line-clamp-2 drop-shadow-lg">
+                    <h3 className="text-2xl md:text-4xl font-cinzel font-semibold text-text-primary mb-3 drop-shadow-lg leading-tight">
                       {item.name}
                     </h3>
-                    <p className="text-xs md:text-sm text-text-secondary line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                    <p className="text-sm md:text-lg text-text-secondary line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                       {item.description}
                     </p>
                   </div>

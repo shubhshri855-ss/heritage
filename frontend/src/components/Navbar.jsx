@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Box } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { motion } from 'framer-motion';
@@ -40,14 +40,32 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const location = useLocation();
+
   const navLinks = [
-    { name: 'Explore', to: '/explore' },
+    { name: 'Explore', to: '/', sectionId: 'explore-section' },
     { name: 'Heritage Map', to: '/heritage-map' },
-    { name: 'Ancient Scripts', to: '/ancient-scripts' },
-    { name: 'Crafts', to: '/crafts' },
+    { name: 'Ancient Scripts', to: '/', sectionId: 'language-explore-section' },
+    { name: 'Crafts', to: '/', sectionId: 'culture-explore-section' },
     { name: 'Heritage Quest', to: '/heritage-quest' },
     { name: 'AI Guide', to: '/ai-guide' },
   ];
+
+  const handleNavClick = (e, link) => {
+    if (link.sectionId) {
+      if (location.pathname === '/') {
+        e.preventDefault();
+        const element = document.getElementById(link.sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // Will navigate to '/', we can append hash but lenis might reset it. 
+        // For now, let it navigate to '/'
+      }
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
     <motion.nav
@@ -85,6 +103,7 @@ const Navbar = () => {
                 <li key={link.name}>
                   <Link
                     to={link.to}
+                    onClick={(e) => handleNavClick(e, link)}
                     className="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1 xl:px-2 py-2 transition-colors duration-200 whitespace-nowrap"
                   >
                     {link.name}

@@ -1,7 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { STATE_DATA } from '../constants/stateData';
 import { HERITAGE_SITES } from '../constants/heritageSites';
 import { HERITAGE_CULTURE } from '../constants/heritageCulture';
@@ -9,12 +11,8 @@ import { HERITAGE_FESTIVALS } from '../constants/heritageFestivals';
 import PageTransition from '../components/PageTransition';
 import Button from '../components/Button';
 
-// Combine all heritage data and add a source tag
-const ALL_HERITAGE = [
-  ...HERITAGE_SITES.map(item => ({ ...item, type: 'Site' })),
-  ...HERITAGE_CULTURE.map(item => ({ ...item, type: 'Culture' })),
-  ...HERITAGE_FESTIVALS.map(item => ({ ...item, type: 'Festival' })),
-];
+gsap.registerPlugin(ScrollTrigger);
+
 
 const realImages = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwyK7JAQWIrVTIcUi7vRFoib-mXEIwTcacIG4lxRaW2A&s=10',
@@ -92,9 +90,12 @@ const StateHeritagePage = () => {
     if (!stateData) return [];
     const stateNameLower = stateData.name.toLowerCase();
     
-    let actualItems = ALL_HERITAGE.filter(item => 
-      item.state && item.state.toLowerCase() === stateNameLower
-    );
+    // Partition by state first, then map type
+    const sites = HERITAGE_SITES.filter(item => item.state && item.state.toLowerCase() === stateNameLower).map(item => ({...item, type: 'Site'}));
+    const culture = HERITAGE_CULTURE.filter(item => item.state && item.state.toLowerCase() === stateNameLower).map(item => ({...item, type: 'Culture'}));
+    const festivals = HERITAGE_FESTIVALS.filter(item => item.state && item.state.toLowerCase() === stateNameLower).map(item => ({...item, type: 'Festival'}));
+    
+    let actualItems = [...sites, ...culture, ...festivals];
 
     // Ensure all actual items have at least 3 images for the slideshow
     actualItems = actualItems.map((item, idx) => {
@@ -133,6 +134,35 @@ const StateHeritagePage = () => {
     
     return actualItems;
   }, [stateData]);
+
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!stateHeritageItems.length) return;
+    
+    let ctx = gsap.context(() => {
+      const items = gsap.utils.toArray('.bento-item');
+      
+      items.forEach((item, i) => {
+        // Create parallax scrub effect. We give different speeds based on index
+        // Columns effectively move at slightly different rates on scroll
+        const speed = 0.2 + ((i % 4) * 0.1); 
+        
+        gsap.to(item, {
+          yPercent: -15 * speed,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top bottom', // Start animation when container top hits bottom of viewport
+            end: 'bottom top',   // End when container bottom hits top of viewport
+            scrub: 1,            // Smooth scrubbing
+          }
+        });
+      });
+    }, containerRef);
+    
+    return () => ctx.revert();
+  }, [stateHeritageItems]);
 
   if (!stateData) {
     return (
@@ -188,20 +218,28 @@ const StateHeritagePage = () => {
 
         {/* Heritage Grid / Collage */}
         {stateHeritageItems.length > 0 ? (
-          <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6">
+          <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-flow-dense gap-4 md:gap-6">
             {stateHeritageItems.map((item, idx) => {
-              // Alternate heights to create a pure masonry collage effect
-              const heights = ['h-[250px]', 'h-[350px]', 'h-[450px]', 'h-[300px]', 'h-[400px]', 'h-[500px]'];
-              // Use a mix based on index to ensure consistent but varied heights
-              const heightClass = heights[(idx * 7 + 3) % heights.length];
+              // Bento layout logic based on index
+              let bentoClass = 'col-span-1 row-span-1 h-[300px]'; // default
+              const modulo = idx % 10;
+              
+              if (modulo === 0) {
+                bentoClass = 'md:col-span-2 md:row-span-2 h-[300px] md:h-[624px]'; // Large Square (624 = 300*2 + 24 gap)
+              } else if (modulo === 3 || modulo === 7) {
+                bentoClass = 'md:col-span-2 md:row-span-1 h-[300px]'; // Wide
+              } else if (modulo === 4) {
+                bentoClass = 'md:col-span-1 md:row-span-2 h-[300px] md:h-[624px]'; // Tall
+              }
               
               return (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 * (idx % 15) }}
-                  className={`group relative overflow-hidden rounded-xl bg-surface-light border border-primary/10 shadow-lg cursor-pointer break-inside-avoid w-full ${heightClass}`}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "100px" }}
+                  transition={{ duration: 0.6, delay: 0.05 * (idx % 8) }}
+                  className={`bento-item group relative overflow-hidden rounded-xl bg-surface-light border border-primary/10 shadow-lg cursor-pointer w-full ${bentoClass}`}
                 >
                   <ImageSlideshow 
                     images={item.images} 

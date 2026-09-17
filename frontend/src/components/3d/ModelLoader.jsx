@@ -108,3 +108,5 @@ const ModelLoader = ({ type = 'hero', isMobile = false, monumentId = null, ...pr
 
 export default ModelLoader;
 
+// Preload the default model for faster rendering
+useGLTF.preload('/models/taj-mahal.glb');

@@ -7,8 +7,7 @@ import PageTransition from '../components/PageTransition';
 import { HERITAGE_SITES } from '../constants/heritageSites';
 import { HERITAGE_CULTURE } from '../constants/heritageCulture';
 
-const HeritageScene = lazy(() => import('../components/3d/HeritageScene'));
-
+import HeritageScene from '../components/3d/HeritageScene';
 const Explore = () => {
   const { id } = useParams();
   const navigate = useNavigate();

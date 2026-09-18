@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const PageTransition = ({ children, className = '' }) => {
   return (
@@ -13,6 +14,8 @@ const PageTransition = ({ children, className = '' }) => {
         if (definition.opacity === 1) {
           const el = document.querySelector('.page-transition-wrapper');
           if (el) el.style.transform = 'none';
+          // Force GSAP to recalculate pin positions after transform is removed
+          ScrollTrigger.refresh();
         }
       }}
       className={`page-transition-wrapper w-full h-full ${className}`}

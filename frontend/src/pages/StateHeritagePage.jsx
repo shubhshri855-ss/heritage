@@ -138,7 +138,7 @@ const StateHeritagePage = () => {
     return actualItems;
   }, [stateData]);
 
-  const containerRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     if (!stateHeritageItems.length) return;
@@ -148,12 +148,10 @@ const StateHeritagePage = () => {
       
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
-          pin: true,
-          pinType: "transform",
-          start: 'center center', // Pin when container is in center of viewport
-          end: `+=${items.length * 80}%`, // Gives decent scrolling time per card
-          scrub: 1, // Smooth scrub
+          trigger: wrapperRef.current,
+          start: 'top top',
+          end: 'bottom bottom', 
+          scrub: 1,
         }
       });
       
@@ -228,36 +226,41 @@ const StateHeritagePage = () => {
 
         {/* Heritage Stacked Cards */}
         {stateHeritageItems.length > 0 ? (
-          <div ref={containerRef} className="relative w-full h-[70vh] flex items-center justify-center mt-12 perspective-[1500px]">
-            {stateHeritageItems.map((item, idx) => {
-              
-              return (
-                <motion.div
-                  key={idx}
-                  style={{ zIndex: stateHeritageItems.length - idx }}
-                  className={`stacked-card absolute w-[90%] md:w-[800px] h-[450px] md:h-[600px] bg-surface-light border border-primary/20 shadow-2xl rounded-2xl overflow-hidden cursor-pointer group`}
-                >
-                  <ImageSlideshow 
-                    images={item.images} 
-                    alt={item.name} 
-                  />
-                  
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
-                  
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <span className="text-sm md:text-md font-bold tracking-widest text-primary uppercase mb-2 block drop-shadow-md">
-                      {item.type}
-                    </span>
-                    <h3 className="text-2xl md:text-4xl font-cinzel font-semibold text-text-primary mb-3 drop-shadow-lg leading-tight">
-                      {item.name}
-                    </h3>
-                    <p className="text-sm md:text-lg text-text-secondary line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
+          <div 
+            ref={wrapperRef} 
+            className="w-full relative" 
+            style={{ height: `calc(100vh + ${stateHeritageItems.length * 80}vh)` }}
+          >
+            <div className="sticky top-[15vh] w-full h-[70vh] flex items-center justify-center perspective-[1500px]">
+              {stateHeritageItems.map((item, idx) => {
+                return (
+                  <motion.div
+                    key={idx}
+                    style={{ zIndex: stateHeritageItems.length - idx }}
+                    className={`stacked-card absolute w-[90%] md:w-[800px] h-[450px] md:h-[600px] bg-surface-light border border-primary/20 shadow-2xl rounded-2xl overflow-hidden cursor-pointer group`}
+                  >
+                    <ImageSlideshow 
+                      images={item.images} 
+                      alt={item.name} 
+                    />
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
+                    
+                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="text-sm md:text-md font-bold tracking-widest text-primary uppercase mb-2 block drop-shadow-md">
+                        {item.type}
+                      </span>
+                      <h3 className="text-2xl md:text-4xl font-cinzel font-semibold text-text-primary mb-3 drop-shadow-lg leading-tight">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm md:text-lg text-text-secondary line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                        {item.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center py-20">

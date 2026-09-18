@@ -167,7 +167,7 @@ const StateHeritagePage = () => {
           });
         }
       });
-    }, containerRef);
+    }, wrapperRef);
     
     return () => ctx.revert();
   }, [stateHeritageItems]);

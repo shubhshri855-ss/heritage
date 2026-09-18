@@ -150,6 +150,7 @@ const StateHeritagePage = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
+          pinType: "transform",
           start: 'center center', // Pin when container is in center of viewport
           end: `+=${items.length * 80}%`, // Gives decent scrolling time per card
           scrub: 1, // Smooth scrub

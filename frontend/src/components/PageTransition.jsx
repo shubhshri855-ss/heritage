@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const PageTransition = ({ children, className = '' }) => {
   return (
@@ -9,16 +8,7 @@ const PageTransition = ({ children, className = '' }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      onAnimationComplete={(definition) => {
-        // If the animate definition finishes, clear the transform so GSAP fixed pinning works
-        if (definition.opacity === 1) {
-          const el = document.querySelector('.page-transition-wrapper');
-          if (el) el.style.transform = 'none';
-          // Force GSAP to recalculate pin positions after transform is removed
-          ScrollTrigger.refresh();
-        }
-      }}
-      className={`page-transition-wrapper w-full h-full ${className}`}
+      className={`w-full h-full ${className}`}
     >
       {children}
     </motion.div>

@@ -6,6 +6,7 @@ import Explore from './pages/Explore';
 import AIGuide from './pages/AIGuide';
 import PlaceholderPage from './pages/PlaceholderPage';
 import StateHeritagePage from './pages/StateHeritagePage';
+import HeritageMapPage from './pages/HeritageMapPage';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
@@ -39,7 +40,7 @@ function App() {
           
           {/* Placeholder Routes */}
           <Route path="explore" element={<PlaceholderPage title="Explore Heritage" />} />
-          <Route path="heritage-map" element={<PlaceholderPage title="Heritage Map" />} />
+          <Route path="heritage-map" element={<HeritageMapPage />} />
           <Route path="ancient-scripts" element={<PlaceholderPage title="Ancient Scripts" />} />
           <Route path="crafts" element={<PlaceholderPage title="Living Crafts" />} />
           <Route path="heritage-quest" element={<PlaceholderPage title="Heritage Quest" />} />

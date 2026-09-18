@@ -186,11 +186,44 @@ const StateHeritagePage = () => {
   }
 
   return (
-    <PageTransition className="min-h-screen bg-background relative overflow-visible overflow-x-hidden pt-32 pb-20 px-4 sm:px-6 lg:px-12 xl:px-24">
+    <PageTransition className="min-h-screen bg-background relative overflow-visible pt-32 pb-20 px-4 sm:px-6 lg:px-12 xl:px-24">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-primary)_0%,_transparent_50%)] opacity-[0.03] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
+      <div className="max-w-7xl mx-auto relative z-10 flex flex-col min-h-full">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-cinzel font-bold text-primary mb-4 uppercase tracking-wider"
+            >
+              {stateData.name}
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-xl text-text-secondary font-light max-w-2xl"
+            >
+              Discover the rich culture, majestic sites, and vibrant festivals of {stateData.name}.
+            </motion.p>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link to="/">
+              <Button variant="secondary" icon={ArrowLeft} iconAnimation="translate">
+                Back to Map
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+
         {/* Heritage Stacked Cards */}
         {stateHeritageItems.length > 0 ? (
           <div 
@@ -198,72 +231,35 @@ const StateHeritagePage = () => {
             className="w-full relative" 
             style={{ height: `calc(100vh + ${stateHeritageItems.length * 80}vh)` }}
           >
-            <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-start pt-24 md:pt-32 pb-10 perspective-[1500px]">
-              
-              {/* Header inside the sticky container so it's pinned too */}
-              <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 md:mb-12 z-20">
-                <div>
-                  <motion.h1 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-5xl md:text-6xl lg:text-7xl font-cinzel font-bold text-primary mb-2 uppercase tracking-wider drop-shadow-md"
+            <div className="sticky top-[15vh] w-full h-[70vh] flex items-center justify-center perspective-[1500px]">
+              {stateHeritageItems.map((item, idx) => {
+                return (
+                  <motion.div
+                    key={idx}
+                    style={{ zIndex: stateHeritageItems.length - idx }}
+                    className={`stacked-card absolute w-[90%] md:w-[900px] h-[50vh] md:h-[65vh] bg-surface-light border border-primary/20 shadow-2xl rounded-2xl overflow-hidden cursor-pointer group`}
                   >
-                    {stateData.name}
-                  </motion.h1>
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="text-xl text-text-secondary font-light max-w-2xl"
-                  >
-                    Discover the rich culture, majestic sites, and vibrant festivals of {stateData.name}.
-                  </motion.p>
-                </div>
-                
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <Link to="/">
-                    <Button variant="secondary" icon={ArrowLeft} iconAnimation="translate">
-                      Back to Map
-                    </Button>
-                  </Link>
-                </motion.div>
-              </div>
-
-              {/* The Stacked Cards Area */}
-              <div className="relative w-full flex-1 flex items-center justify-center">
-                {stateHeritageItems.map((item, idx) => {
-                  return (
-                    <motion.div
-                      key={idx}
-                      style={{ zIndex: stateHeritageItems.length - idx }}
-                      className={`stacked-card absolute w-[90%] md:w-[900px] h-[50vh] md:h-[65vh] bg-surface-light border border-primary/20 shadow-2xl rounded-2xl overflow-hidden cursor-pointer group`}
-                    >
-                      <ImageSlideshow 
-                        images={item.images} 
-                        alt={item.name} 
-                      />
-                      
-                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
-                      
-                      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <span className="text-sm md:text-md font-bold tracking-widest text-primary uppercase mb-2 block drop-shadow-md">
-                          {item.type}
-                        </span>
-                        <h3 className="text-2xl md:text-4xl font-cinzel font-semibold text-text-primary mb-3 drop-shadow-lg leading-tight">
-                          {item.name}
-                        </h3>
-                        <p className="text-sm md:text-lg text-text-secondary line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                          {item.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
+                    <ImageSlideshow 
+                      images={item.images} 
+                      alt={item.name} 
+                    />
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
+                    
+                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="text-sm md:text-md font-bold tracking-widest text-primary uppercase mb-2 block drop-shadow-md">
+                        {item.type}
+                      </span>
+                      <h3 className="text-2xl md:text-4xl font-cinzel font-semibold text-text-primary mb-3 drop-shadow-lg leading-tight">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm md:text-lg text-text-secondary line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                        {item.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         ) : (
